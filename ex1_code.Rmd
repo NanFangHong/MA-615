@@ -1,0 +1,163 @@
+---
+title: "Exercises 1 Vectors"
+output:
+  pdf_document: default
+  html_notebook: default
+---
+#### MA615 Nanfang_Hong (U92430309)
+
+##### 1. Create the vectors:
+  
+  (a)
+```{r}
+1:20
+```
+  
+  (b)
+```{r}
+20:1
+```
+  
+  (c)
+```{r}
+c(1:19, 20, 19:1)
+```
+  
+  (d)
+```{r}
+tmp <- c(4, 6, 3)
+tmp
+```
+  
+  (e)
+```{r}
+rep(tmp, times = 10)
+```
+  
+  (f)
+```{r}
+rep(tmp, length = 31)
+```
+  
+  (g)
+```{r}
+c(rep(4, 10), rep(6, 20), rep(3, 30))
+```
+  
+
+##### 2. Create a vector of the values of e^x^cos(x) at x = 3,3.1,3.2,...,6.
+```{r}
+x = seq(3, 6, 0.1)
+c(exp(x) * cos(x))
+```
+
+##### 3. Create the following vectors:
+  (a)
+```{r}
+i <- 1:34
+c(0.1 ^ (i + 2) * 0.2 ^ i)
+```
+  (b)
+```{r}
+i <- 1:25
+c(2 ^ i / i)
+```
+  
+##### 4. Calculate the following:
+  (a)
+```{r}
+i <- (10:100)
+sum(i^3 + 4*i^2)
+```
+  (b)
+```{r}
+i <- 1:25
+sum((2 ^ i) / i + (3 ^ i) / (i ^ 2))
+```
+
+##### 5. Use the function paste to create the following character vectors of length 30:
+  (a)
+```{r}
+paste(c("label"), 1:30)
+```
+  (b)
+```{r}
+paste(c("fn"), 1:30, sep = "")
+```
+  
+##### 6. Execute the following lines which create two vectors of random integers which are chosen with replacement from the integers 0, 1, . . . , 999. Both vectors have length 250.
+
+```{r}
+set.seed(50)
+xVec <- sample(0:999, 250, replace=T)
+yVec <- sample(0:999, 250, replace=T)
+xVec
+yVec
+```
+  
+  (a)
+```{r}
+i <- 2:250
+c(yVec[i]-xVec[i - 1])
+```
+  (b)
+```{r}
+c(sin(yVec[i - 1]) / cos(xVec[i]))
+```
+  (c)
+```{r}
+i <- 3:250
+c(xVec[i - 2] + 2 * xVec[i - 1] - xVec[i])
+```
+  (d)
+```{r}
+i <- 1:249
+sum(exp(-xVec[i + 1]) / (xVec[i] + 10))
+```
+  
+##### 7. This question uses the vectors xVec and yVec created in the previous question and the functions sort, order, mean, sqrt, sum and abs.
+
+  (a)
+```{r}
+yVec[yVec > 600]
+```
+  (b)
+```{r}
+yVec_600 <- yVec # Duplicate yVec to yVec_600. 
+yVec_600[yVec_600 <= 600] <- NA # Replace 600 or less with NA
+order(yVec_600, na.last = NA) # Positions in yVec with values >600 (in acsending sequence)
+```
+  (c)
+```{r}
+xVec[order(yVec_600, na.last = NA)]
+```
+  (d)
+```{r}
+xVec_mean = mean(xVec)
+c(sqrt(abs(xVec - xVec_mean)))
+```
+  (e)
+```{r}
+sum(yVec >= (max(yVec) - 200))
+```
+  (f)
+```{r}
+sum(xVec %% 2 == 0) # Integer division by 2. divisible -> 0, non-divisible -> 1. 
+```
+  (g)
+```{r}
+xVec[order(yVec)]
+```
+  (h)
+```{r}
+i <- seq(1, 3 * ceiling(length(xVec)/3) -2, 3) # 1, 4, 7, ...
+yVec[i]
+```
+##### 8. By using the function cumprod or otherwise, calculate
+
+```{r}
+i <- 1:19
+1 + sum(cumprod(2 * i) / cumprod(2 * i + 1)) 
+```
+
+  
